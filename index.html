@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Towards Interactive Image Inpainting via Robust Sketch Refinement">
-  <meta name="keywords" content="Image Inpainting, Sketch-Guided Image Inpainting">
+        content="InstanceAnimator: Multi-Instance Sketch Video Colorization">
+  <meta name="keywords" content="Sketch Colorization, Multi-Instance, Video Colorization">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Towards Interactive Image Inpainting via Robust Sketch Refinement</title>
+  <title>InstanceAnimator: Multi-Instance Sketch Video Colorization</title>
 
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -46,24 +46,28 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Towards Interactive Image Inpainting via Robust Sketch Refinement</h1>
-          <h1 class="title is-3">TMM 2024</h1>
+          <h1 class="title is-1 publication-title">InstanceAnimator: Multi-Instance Sketch Video Colorization</h1>
+          <h1 class="title is-3">2025</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://scholar.google.com/citations?user=Y3NKd1wAAAAJ&hl=zh-CN">Chang Liu</a><sup>1</sup>,</span>
+              <a> Yinhan Zhang</a><sup>1,2</sup>,</span>
             <span class="author-block">
-              <a href="https://scholar.google.com/citations?user=rMaBuHUAAAAJ&hl=zh-CN&oi=ao">Shunxin Xu</a><sup>1</sup>,</span>
+              <a> Yue Ma </a><sup>1</sup>,</span>
             <span class="author-block">
-              <a href="https://scholar.google.com/citations?hl=zh-CN&user=gHEd-IMAAAAJ">Jialun Peng</a><sup>1</sup>,</span>
+              <a> Bingyuan Wang</a><sup>2</sup>,</span>
             <span class="author-block">
-              <a href="https://hitachinsk.github.io/">Kaidong Zhang</a><sup>1</sup>,</span>
+              <a> Kunyu Feng</a><sup>2</sup> <br>
             <span class="author-block">
-              <a href="https://faculty.ustc.edu.cn/dongeliu/">Dong Liu</a><sup>1*</sup>,</span>
+              <a> Qifeng Chen</a><sup>2</sup>,</span>
             <span class="author-block">
+              <a> Anyi Rao</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a> Zeyu Wang</a><sup>1,2</sup>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>University of Science and Technology of China,</span>
+            <span class="author-block"><sup>1</sup>HKUST(GZ),</span>
+            <span class="author-block"><sup>2</sup>HKUST</span>
           </div>
 
           <div class="column has-text-centered">
@@ -75,23 +79,16 @@
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://github.com/AlonzoLeeeooo/SketchRefiner"
+                <a href="https://github.com/YinHan-Zhang/InstanceAnimator"
                    class="external-link button is-normal is-rounded is-dark">
                   <span>Code</span>
                   </a>
                   <span class="link-block">
-                    <a href="https://github.com/AlonzoLeeeooo/SketchRefiner"
+                    <a href="https://modelscope.cn/datasets/NiceYinHan/OpenAnimate"
                        class="external-link button is-normal is-rounded is-dark">
                       <span>Dataset</span>
                       </a>
                       </span>
-
-                      <span class="link-block">
-                        <a href="https://github.com/AlonzoLeeeooo/SketchRefiner"
-                           class="external-link button is-normal is-rounded is-dark">
-                          <span>Demo</span>
-                          </a>
-                          </span>
                     
             </div>
           </div>
@@ -108,14 +105,38 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <div>
-        <img src="./static/images/teasor.jpg" alt="results" class="center">
+        <img src="./static/images/teaser.png" alt="results" class="center">
+        <br>
+        <p>
+          <b>Example results of InstanceAnimator.</b> Given diverse instances, sketch sequences, and textual descriptions, our framework
+          enables high-quality, controllable video colorization with multi-instance and background customization
+        </p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section">
+
+
+<!-- demo video -->
+<section class="hero teaser">
   <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Demo Video</h2>
+          <video controls style="width:100%; max-width:1200px;">
+            <source src="./static/images/video.mp4" type="video/mp4">
+            您的浏览器不支持视频标签。
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
   <div class="container">
 
     <!-- Abstract. -->
@@ -124,21 +145,35 @@
       <div class="column is-full-width">
         <h2 class="title is-3">Overview</h2>
         <div class="content has-text-justified">
+          <img src="./static/images/introduction.png" alt="abstract" style="width:100%; ">
+          <br>
           <p>
-            One tough problem of image inpainting is to restore complex structures in the corrupted regions. It motivates interactive image inpainting which leverages additional hints, e.g., sketches, to assist the inpainting process. Sketch is simple and intuitive to end users, but meanwhile has free forms with much randomness. Such randomness may confuse the inpainting models, and incur severe artifacts in completed images. To address this problem, we propose a two-stage image inpainting method termed SketchRefiner. In the first stage, we propose using a cross-correlation loss function to robustly calibrate and refine the user-provided sketches in a coarse-to-fine fashion. In the second stage, we learn to extract features from the abstracted sketches in a latent space and modulate the inpainting process. We also propose an algorithm to simulate real sketches automatically and build a test protocol to evaluate different methods under real applications. Experimental results on public datasets demonstrate that SketchRefiner effectively utilizes sketch information and eliminates the artifacts due to the free-form sketches. Our method consistently outperforms state-of-the-art baselines both qualitatively and quantitatively, meanwhile revealing great potential in real-world applications.
+            <b>Motivation.</b> Unlike traditional methods that require multi-stage, frame-by-frame colorization, InstanceAnimator supports col-
+            orizing sketch sequences into videos directly after background and character design. Our method no longer relys in single reference
+            keyframe but adjusts instance-level colorization, providing higher user flexibility and significantly reducing time consumption and labor
+            <br>
+            <b>Overview.</b> Existing animation colorization methods rely heavily on a single initial reference frame, resulting in fragmented workflows and limited customizability.
+            To eliminate these constraints, we introduce a Canvas Guidance Condition that allows users to freely place reference elements on a blank canvas, enabling flexible user control.
+            To address the misalignment and quality degradation issues of DiT-based approaches, we design an Instance Matching Mechanism that integrates the instances with the sketch and noise channels, ensuring visual consistency across different sequences while maintaining controllability.
+            Additionally, to mitigate the degradation of fine-grained instance and background details, we propose an Adaptive Decoupled Control Module that injects semantic features from characters, backgrounds, and text conditions into the diffusion model, significantly enhancing detail fidelity. 
           </p>
       </div>
     </div>
 
-    <!-- Pipeline. -->
+    <!-- Framework. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
         <br />
-        <h2 class="title is-3">Pipeline</h2>
-          <img src="./static/images/pipeline.jpg" alt="pipeline" style="width:100%; ">
+        <h2 class="title is-3">Framework</h2>
+          <img src="./static/images/framework.png" alt="pipeline" style="width:100%; ">
         <div class="content has-text-justified">
+          <br>
           <p>
-             SketchRefiner consists of two stages: Sketch Refinement Network (SRN) and Sketch-modulated Inpainting Network (SIN). SRN focuses on calibrating the input sketches to boost their usability. Then, SIN utilizes the refined sketches to guide the inpainting process and recover the missing textures.
+            <b>Overview of InstanceAnimator.</b> We first fuse instance latent features with sketch and noise channels to establish a corre-
+            spondence between the line drawing and the reference instance, as well as to maintain the character feature. Concurrently, instances,
+            background, and text descriptions are fed into the Adaptive Decoupled Control Module independently, which dynamically injects condi-
+            tion information into DiT blocks through three condition-specific expert modules. At the inference stage, users can adjust the conditional
+            weights to enhance controllability and creative flexibility
           </p>
         </div>
       </div>
@@ -148,56 +183,70 @@
      <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
         <br />
-        <h2 class="title is-3">Sketch-based Test Protocol</h2>
+        <h2 class="title is-3">Dataset</h2>
         <div class="content has-text-justified">
           <p>
-             To evaluate the usability of sketch-based methods upon real-world applications, we propose a novel sketch-based test protocol. We randomly collect a series of face images as well as scene-level images, and manually annotate the masks and sketches with apple pencil on iPad. Out of demonstration, the test protocol covers challenging real applications including face editing, scene editing, object removal and watermark removal. The proposed testing benchmark would be open-sourced to promote further studies.
+            The current colorization datasets are generally based on reference frames and protect multiple scenes, which cannot meet the instance-level colorization task. Therefore, we constructed this dataset.
+            This dataset is designed for the instance-aware sketch video colorization task and aimed at promoting the development of automatic animation techniques. This dataset includes two parts. One is a filter subset from the Sakuga42M dataset, the other is collected from animation films on the internet. The total video clips are about 40K+, and each video clip is in the same scene, which is cut by scene-cutting algorithms.  For each data clip, we provide a reference frame, multiple reference instances, a background image, and a text description.
           </p>
         </div>
-          <img src="./static/images/realworld.jpg" alt="pipeline" style="width:100%; ">
+          <img src="./static/images/data_pipeline.png" alt="pipeline" style="width:100%; ">
       </div>
     </div>
 
     <!-- Results. -->
     <div class="columns is-centered has-text-centered">
-      <div class="container is-max-desktop">
-        <br />
-        <h2 class="title is-3">Qualitative Comparison</h2>
-        <div class="content has-text-justified">
-          <p>
-            We evaluate the proposed SketchRefiner compared with state-of-the-art methods following previous solutions. Evaluation are implemented upon CelebA-HQ, ImageNet and Places2 datasets. Besides, we implement additional evaluation with real sketches on our proposed sketch-based test protocol. Results using synthetic sketches and real ones demonstrate the superiority of SketchRefiner over other competitors. 
-          </p>
-        </div>
-        <img src="./static/images/face.jpg" alt="face" style="width:100%; ">
-        <div text-align:center>
-          <p class="center">
-           Qualitative comparison upon inpainting task and real applications of face images.
-          </p>
-        </div>
-        <img src="./static/images/scene.jpg" alt="scene" style="width:100%; ">
-        <div text-align:center>
-          <p class="center">
-            Qualitative comparison upon real applications of scene-level images.
-          </p>
-        </div>
-
-        <!-- Test Protocol. -->
-     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
         <br />
         <h2 class="title is-3">More Results</h2>
         <div class="content has-text-justified">
-          <p>
-             More results upon the proposed test protocol are demonstrated in the following figure.
+          
+        </div>
+        <img src="./static/images/control.png" alt="face" style="width:100%; ">
+        <div text-align:center>
+          <p class="center">
+            Given the same sketch and different reference instances, InstanceAnimator generates a variety of colorful videos.
           </p>
         </div>
-          <img src="./static/images/more_results.jpg" alt="more_results" style="width:100%; ">
+
+        <br>
+
+        <img src="./static/images/control2.png" alt="scene" style="width:100%; ">
+        <div text-align:center>
+          <p class="center">
+            Using the same designed characters, our framework colorizes different sketches with consistent colors and user-customized backgrounds.
+          </p>
+        </div>
+
+        <br>
+
+        <img src="./static/images/bg_control2.png" alt="scene" style="width:100%; ">
+        <div text-align:center>
+          <p class="center">
+            <b>Visual background control.</b> Our method supports customized visual background control in combination with reference instance and line drawing during the colorization process.
+          </p>
+        </div>
+
+        <br>
+
+        <img src="./static/images/style_control.png" alt="more_results" style="width:100%; "> 
+        <div text-align:center>
+          <p class="center">
+            <b>Colorization from Different Style Reference.</b> For the same character, our method easily learn features. For different style characters, our method can transfer their style to the sketches even without prior knowledge.
+          </p>
+        </div>
+
+        <br>
+
+        <img src="./static/images/multi_ref.png" alt="more_results" style="width:100%; ">
+        <div text-align:center>
+          <p class="center">
+            <b>Multiple Reference Instances Control.</b> While we obtain different style reference instances from the internet, our method can match the most similar character and follow the reference instance style to colorize the sketch sequence
+          </p>
+        </div>
+        
       </div>
     </div>
-
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -209,17 +258,11 @@
     <h2 class="title">BibTeX</h2>
     <div class="content has-text-justified">
       <p>
-         If you find this paper helpful to your work, please cite our TMM 2024 paper with the following BibTeX reference:
+         If you find this paper helpful to your work, please cite our paper with the following BibTeX reference:
       </p>
     </div>
-    <pre><code>@@ARTICLE{liu-etal-2024-sketchrefiner,
-      author={Liu, Chang and Xu, Shunxin and Peng, Jialun and Zhang, Kaidong and Liu, Dong},
-      journal={IEEE Transactions on Multimedia}, 
-      title={Towards Interactive Image Inpainting via Robust Sketch Refinement}, 
-      year={2024},
-      pages={1-15},
-    }
-}</code></pre>
+    <pre><code> ...
+    </code></pre>
   </div>
 </section>
 
